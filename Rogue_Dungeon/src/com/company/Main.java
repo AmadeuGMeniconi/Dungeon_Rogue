@@ -47,15 +47,16 @@ public class Main {
             int choose = random.nextInt(monster_types.length);
             monsters[i] = new Monster(monster_types[choose]);
             //Show monster locations (Debugging):
-            System.out.println(monsters[i].get_Type()+ " at room " + Arrays.toString(monsters[i].get_Location()) + " !!!");
+            //System.out.println(monsters[i].get_Type()+ " at room " + Arrays.toString(monsters[i].get_Location()) + " !!!");
         }
 
         //Game "start screen"
         System.out.println("\n================= GATHER THE RICHES AND EXIT THE DUNGEON =================\n");
-        System.out.println("You've entered the Dungeon! You're currently at room " + Arrays.toString(hero.get_Location()));
+        System.out.println("You've entered the Dungeon! You're currently in room " + Arrays.toString(hero.get_Location()));
 
         //The Game (loop frames update):
         boolean GameOver;
+        int round = 1;
         while(true){
 
             //Check for encounter with treasures from treasure array
@@ -73,26 +74,30 @@ public class Main {
                 if (GameOver) System.exit(0);
             }
 
-            //Prompt user's next Command
-            System.out.println("\nDungeon Exit's at room " + Arrays.toString(exit.get_Location()));
+            System.out.println("\n=============================== INVENTORY =====================================");
 
-            System.out.println("\nPocket: " + hero.get_Pocket());
+            System.out.println("\nPOCKET: " + hero.get_Pocket());
 
-            System.out.println("\nDungeon Treasures Map: ");
+            System.out.println("\nDUNGEON TREASURE MAP: ");
             for(int i = 0; i < treasures.length; i++) {
                 if (treasures[i].get_Type() != null)
-                    System.out.println("- " + treasures[i].get_Type() + " at room " + Arrays.toString(treasures[i].get_Location()));
+                    System.out.println("- " + treasures[i].get_Type() + " in room " + Arrays.toString(treasures[i].get_Location()));
             }
 
-            System.out.println("\n==============================================================================");
+            System.out.println("\n=================================== ROUND " + round + " ===================================");
 
-            System.out.println("\nCurrent room " + Arrays.toString(hero.get_Location()));
+            System.out.println("\nDUNGEON EXIT IN ROOM " + Arrays.toString(exit.get_Location()));
 
-            System.out.println("\nUse \"W\", \"A\", \"S\" or \"D\" to move through the Dungeon. Then \"Enter\" to confirm: ");
+            System.out.println("\nCURRENT ROOM " + Arrays.toString(hero.get_Location()));
+
+            System.out.println("\nUSE \"W\", \"A\", \"S\" or \"D\" TO MOVE THROUGH THE DUNGEON. THEN PRESS \"ENTER\" TO CONFIRM: ");
+
+            round += 1;
 
             //User's Command input
             hero.walk();
 
+            System.out.println("\n===============================================================================");
         }
 
     }
